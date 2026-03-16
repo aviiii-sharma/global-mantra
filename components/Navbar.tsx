@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -42,26 +43,30 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-navy-800 shadow-xl border-b border-teal/20"
             : "bg-navy-800/90 backdrop-blur-md"
         }`}
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="relative w-10 h-10 lg:w-12 lg:h-12 flex-shrink-0">
+                <Image
+                  src="/images/tlogo3.png"
+                  alt="GlobalMantra Logo"
+                  fill
+                  className="object-contain mix-blend-lighten"
+                  priority
+                />
+              </div>
               <div>
-                <span className="text-white font-poppins font-bold text-2xl leading-tight block">
+                <span className="text-white font-poppins font-bold text-xl lg:text-2xl leading-tight block">
                   Global<span className="text-gold">Mantra</span>
                 </span>
-                
               </div>
             </Link>
 
@@ -103,7 +108,9 @@ export default function Navbar() {
                               key={child.href}
                               href={child.href}
                               className={`block px-4 py-3 text-sm transition-colors hover:bg-teal/10 hover:text-teal ${
-                                pathname === child.href ? "text-teal bg-teal/10" : "text-gray-300"
+                                pathname === child.href
+                                  ? "text-teal bg-teal/10"
+                                  : "text-gray-300"
                               }`}
                             >
                               {child.label}
@@ -147,7 +154,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
