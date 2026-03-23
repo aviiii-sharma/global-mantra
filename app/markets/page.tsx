@@ -58,28 +58,32 @@ export default function MarketsPage() {
             {regions.map((region, i) => (
               <div
                 key={i}
-                className="bg-gray-light border border-gray-200 rounded-2xl overflow-hidden card-hover"
+                className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                 data-aos="fade-up"
                 data-aos-delay={i * 80}
               >
-                <div className={`bg-gradient-to-br ${region.color} p-5`}>
+                {/* Header */}
+                <div className={`bg-gradient-to-br ${region.color} px-5 py-4 flex items-center justify-between`}>
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{region.icon}</span>
-                    <h3 className="font-poppins font-bold text-white text-lg">{region.name}</h3>
+                    <span className="text-2xl">{region.icon}</span>
+                    <h3 className="font-poppins font-bold text-white text-base">{region.name}</h3>
                   </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/70">
+                    {region.countries.length} markets
+                  </span>
                 </div>
-                <div className="p-5">
-                  <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold mb-3">
-                    Key Markets
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {region.countries.map((country) => (
-                      <span
+
+                {/* Countries */}
+                <div className="px-5 py-4">
+                  <div className="flex flex-wrap gap-x-0 gap-y-0 divide-y divide-gray-100">
+                    {region.countries.map((country, j) => (
+                      <div
                         key={country}
-                        className="px-3 py-1 bg-white border border-gray-200 rounded-full text-navy text-xs font-medium shadow-sm"
+                        className="w-full flex items-center gap-2.5 py-2"
                       >
-                        {country}
-                      </span>
+                        <span className="w-1 h-1 rounded-full bg-teal flex-shrink-0" />
+                        <span className="text-navy text-sm font-medium">{country}</span>
+                      </div>
                     ))}
                   </div>
                 </div>

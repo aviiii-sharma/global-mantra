@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.69",
     "@types/aos": "^3.0.7",
     "aos": "^2.3.4",
     "framer-motion": "^12.35.2",

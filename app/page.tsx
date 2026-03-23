@@ -222,9 +222,10 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-gray-300 text-lg leading-relaxed mb-10 max-w-2xl"
             >
-              Global Mantra is a leading Indian export house supplying premium agro products, ready-to-eat
-              foods, and industrial packaging materials to buyers across 45+ countries. FOB, CIF, CFR — we
-              handle it all.
+              Global Mantra is a modern export company connecting international buyers 
+              with trusted suppliers across India. We specialize in sourcing agro products, 
+              ready-to-make foods, and industrial packaging materials while ensuring quality, 
+              compliance, and efficient export coordination.
             </motion.p>
 
             <motion.div
