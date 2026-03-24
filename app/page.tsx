@@ -338,10 +338,10 @@ export default function HomePage() {
               className="font-poppins font-bold text-navy leading-[1.1] mb-5"
               style={{ fontSize: "clamp(1.75rem, 5vw, 3.1rem)" }}
             >
-              Delivering Indian Products
+              Taking Indian Exports
               <br />
               <span className="relative inline-block">
-                Across the World
+                to Global Markets
                 {/* Gold underline accent — matches btn-gold / gold brand colour */}
                 <span
                   className="absolute left-0 -bottom-1 h-[3px] w-full rounded-full bg-gold opacity-80"
