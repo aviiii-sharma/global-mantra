@@ -103,7 +103,7 @@ export default function LogisticsPage() {
   return (
     <PageWrapper>
       {/* Hero */}
-      <section className="relative py-28 overflow-hidden">
+      <section className="relative py-16 sm:py-28 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80')" }}
@@ -112,7 +112,7 @@ export default function LogisticsPage() {
         <div className="container-custom relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-teal text-sm uppercase tracking-widest font-semibold mb-4">Export Workflow</p>
-            <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-6">
               Our Logistics Process
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">

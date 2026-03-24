@@ -34,7 +34,7 @@ export default function AboutPage() {
     return (
         <PageWrapper>
             {/* Hero */}
-            <section className="relative py-28 overflow-hidden">
+            <section className="relative py-16 sm:py-28 overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80')" }}
@@ -43,7 +43,7 @@ export default function AboutPage() {
                 <div className="container-custom relative z-10 text-center">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                         <p className="text-teal text-sm uppercase tracking-widest font-semibold mb-4">Our Company</p>
-                        <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-6">
+                        <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-6">
                             About Global Mantra
                         </h1>
                         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -57,7 +57,7 @@ export default function AboutPage() {
             {/* Company Story */}
             <section className="section-padding bg-white">
                 <div className="container-custom">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         <div data-aos="fade-right">
                             <p className="text-teal text-sm uppercase tracking-wider font-semibold mb-3">Our Story</p>
                             <h2 className="font-poppins text-3xl font-bold text-navy mb-6">
@@ -78,7 +78,7 @@ export default function AboutPage() {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4" data-aos="fade-left">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" data-aos="fade-left">
                             {[
                                 { icon: Globe, title: "3 Categories", sub: "Agro, Food & Packaging" },
                                 { icon: Users, title: "Supplier Network", sub: "Across India" },
@@ -161,7 +161,7 @@ export default function AboutPage() {
                         <p className="text-teal text-sm uppercase tracking-wider font-semibold mb-3">Our Team</p>
                         <h2 className="font-poppins text-3xl font-bold text-navy">Export Operations Team</h2>
                     </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {team.map((member, i) => (
                             <div
                                 key={i}

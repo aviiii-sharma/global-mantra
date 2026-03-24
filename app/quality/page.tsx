@@ -49,7 +49,7 @@ export default function QualityPage() {
   return (
     <PageWrapper>
       {/* Hero */}
-      <section className="relative py-28 overflow-hidden">
+      <section className="relative py-16 sm:py-28 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=1920&q=80')" }}
@@ -58,7 +58,7 @@ export default function QualityPage() {
         <div className="container-custom relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-teal text-sm uppercase tracking-widest font-semibold mb-4">Our Standards</p>
-            <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-6">
               Quality Assurance
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -97,7 +97,7 @@ export default function QualityPage() {
                   </div>
                   <div className="sm:col-span-2">
                     <p className="text-gray-600 leading-relaxed mb-5">{step.desc}</p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {step.checks.map((check, j) => (
                         <div key={j} className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />

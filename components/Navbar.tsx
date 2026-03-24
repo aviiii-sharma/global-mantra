@@ -145,7 +145,7 @@ export default function Navbar() {
                 Request a Quote
               </Link>
               <button
-                className="lg:hidden text-white p-2"
+                className="lg:hidden text-white p-2.5 -mr-1"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
               >
@@ -165,6 +165,7 @@ export default function Navbar() {
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
             className="fixed inset-0 z-40 bg-navy-dark flex flex-col pt-20 px-6 pb-8 overflow-y-auto lg:hidden"
+            style={{ paddingBottom: "calc(2rem + env(safe-area-inset-bottom, 0px))" }}
           >
             <nav className="flex flex-col gap-1 mt-4">
               {navLinks.map((link) => (

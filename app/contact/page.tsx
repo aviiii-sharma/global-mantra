@@ -37,7 +37,7 @@ export default function ContactPage() {
     return (
         <PageWrapper>
             {/* Hero */}
-            <section className="relative py-28 overflow-hidden">
+            <section className="relative py-16 sm:py-28 overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1920&q=80')" }}
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 <div className="container-custom relative z-10 text-center">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                         <p className="text-teal text-sm uppercase tracking-widest font-semibold mb-4">Get in Touch</p>
-                        <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-6">
+                        <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-6">
                             Request a Quotation
                         </h1>
                         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -116,7 +116,7 @@ export default function ContactPage() {
 
                                     <div className="border-t border-gray-100 pt-6 mb-6">
                                         <h3 className="font-poppins text-lg font-bold text-navy mb-5">Product Requirements</h3>
-                                        <div className="grid sm:grid-cols-3 gap-5">
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                                             <div>
                                                 <label className="block text-navy font-semibold text-sm mb-2">Product Category *</label>
                                                 <select

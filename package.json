@@ -13,6 +13,7 @@
     "@splinetool/runtime": "^1.12.69",
     "@types/aos": "^3.0.7",
     "aos": "^2.3.4",
+    "cobe": "^2.0.1",
     "framer-motion": "^12.35.2",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",

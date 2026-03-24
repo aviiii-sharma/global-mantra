@@ -124,7 +124,7 @@ export default function RTEProductsPage() {
     return (
         <PageWrapper>
             {/* ── Hero ── */}
-            <section className="relative py-28 overflow-hidden">
+            <section className="relative py-16 sm:py-28 overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: "url('/images/producthero/hero-rte.jpg')" }}
@@ -144,7 +144,7 @@ export default function RTEProductsPage() {
                             <span className="text-white">Ready-to-Eat Food</span>
                         </nav>
 
-                        <div className="flex items-center gap-4 mb-4">
+                        <div className="flex items-center gap-3 sm:gap-4 mb-4 flex-wrap">
                             <div className="w-12 h-12 rounded-xl bg-teal/20 border border-teal/40 flex items-center justify-center">
                                 <UtensilsCrossed className="w-6 h-6 text-teal" />
                             </div>
@@ -156,7 +156,7 @@ export default function RTEProductsPage() {
                             </span>
                         </div>
 
-                        <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-4">
+                        <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-4">
                             Ready-to-Eat Food
                         </h1>
                         <p className="text-gray-300 text-lg max-w-2xl">
@@ -168,8 +168,8 @@ export default function RTEProductsPage() {
             </section>
 
             {/* ── Filter Bar ── */}
-            <div className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
-                <div className="container-custom py-3 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm py-3">
+                <div className="container-custom flex flex-col sm:flex-row items-start sm:items-center gap-3">
                     {/* Category pills */}
                     <div className="flex items-center gap-2 flex-wrap flex-1">
                         {categories.map((cat) => (
@@ -385,7 +385,7 @@ export default function RTEProductsPage() {
                                         {selectedProduct.specs && (
                                             <div className="px-6 py-4">
                                                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-3">Product Details</p>
-                                                <div className="grid grid-cols-3 gap-2">
+                                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                                     {([
                                                         { icon: Leaf,        label: "Ingredients",   key: "ingredients"   },
                                                         { icon: Clock,       label: "Shelf Life",    key: "shelfLife"     },

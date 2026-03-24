@@ -10,7 +10,7 @@ export default function MarketsPage() {
   return (
     <PageWrapper>
       {/* Hero */}
-      <section className="relative py-28 overflow-hidden">
+      <section className="relative py-16 sm:py-28 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1920&q=80')" }}
@@ -19,7 +19,7 @@ export default function MarketsPage() {
         <div className="container-custom relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-teal text-sm uppercase tracking-widest font-semibold mb-4">Our Reach</p>
-            <h1 className="font-poppins text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h1 className="font-poppins text-3xl lg:text-5xl font-bold text-white mb-6">
               Global Markets We Serve
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -54,7 +54,7 @@ export default function MarketsPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {regions.map((region, i) => (
               <div
                 key={i}

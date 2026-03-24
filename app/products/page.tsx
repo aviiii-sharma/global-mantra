@@ -98,7 +98,7 @@ export default function ProductsPage() {
     return (
         <PageWrapper>
             {/* ── Hero ────────────────────────────────────────────────────── */}
-            <section className="relative py-28 overflow-hidden">
+            <section className="relative py-16 sm:py-28 overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center scale-105"
                     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&q=80')" }}
@@ -112,7 +112,7 @@ export default function ProductsPage() {
                 <div className="container-custom relative z-10 text-center">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
                         <p className="text-teal text-xs uppercase tracking-[0.25em] font-bold mb-4">Export Portfolio</p>
-                        <h1 className="font-poppins text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                        <h1 className="font-poppins text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
                             Products We<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-300">Export Globally</span>
                         </h1>
@@ -128,7 +128,7 @@ export default function ProductsPage() {
                                 { n: "500+", label: "MT Monthly" },
                                 { n: "12+", label: "Years Export" },
                             ].map((s) => (
-                                <div key={s.label} className="bg-white/5 backdrop-blur px-8 py-4">
+                                <div key={s.label} className="bg-white/5 backdrop-blur px-4 sm:px-8 py-4">
                                     <div className="text-2xl font-black text-white">{s.n}</div>
                                     <div className="text-gray-400 text-xs mt-0.5">{s.label}</div>
                                 </div>
@@ -143,7 +143,7 @@ export default function ProductsPage() {
                 {/* Tab bar */}
                 <div className="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
                     <div className="container-custom">
-                        <div className="flex gap-0 overflow-x-auto">
+                        <div className="flex gap-0 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
                             {categories.map((c, i) => {
                                 const Icon = c.icon;
                                 const active = activeTab === i;

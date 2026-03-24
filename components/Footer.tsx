@@ -16,23 +16,17 @@ const footerLinks = {
     ],
 };
 
-const certifications = ["IEC", "FSSAI", "APEDA", "SBR", "ISO 22000", "HACCP", "COA", "MSDS", "GST"];
+const certifications = ["IEC", "FSSAI", "APEDA", "SBR", "ISO 22000", "HACCP", "COA", "MSDS"];
 
 export default function Footer() {
     return (
-        <footer className="bg-navy-dark text-gray-400">
-            {/* Top Banner */}
-
-
+        <footer className="bg-navy-dark text-gray-400 py-10 sm:py-15">
             {/* Main Footer */}
-            <div className="container-custom py-16">
+            <div className="container-custom">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Brand */}
                     <div className="lg:col-span-1">
                         <Link href="/" className="flex items-center gap-2 mb-4">
-                            {/*<div className="w-9 h-9 rounded-lg bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center flex-shrink-0">
-                                <Globe className="w-5 h-5 text-white" />
-                            </div>*/}
                             <div>
                                 <span className="text-white font-poppins font-bold text-lg leading-tight block">
                                     Global<span className="text-gold">Mantra</span>
@@ -146,8 +140,8 @@ export default function Footer() {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-gray-800">
-                <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+            <div className="border-t border-gray-800 mt-2 sm:mt-5">
+                <div className="container-custom py-1 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
                     <span>© {new Date().getFullYear()} Global Mantra Group Ltd. All rights reserved.</span>
                     <span>
                         FOB | CIF | CFR Export Terms &nbsp;·&nbsp; APEDA Registered &nbsp;·&nbsp; IEC Code: AAACG1234Z
