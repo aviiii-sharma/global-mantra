@@ -119,7 +119,7 @@ export default function Footer() {
                                 <MapPin className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
                                 <span className="text-sm leading-relaxed">
                                     Global Mantra Group Ltd.<br />
-                                    Anand, Gujarat, India
+                                    Ahmedabad, Gujarat, India
                                 </span>
                             </li>
                             <li className="flex gap-3">

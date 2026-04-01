@@ -202,7 +202,7 @@ export default function ContactPage() {
                                 <h3 className="font-poppins font-bold text-lg text-gold mb-5">Contact Details</h3>
                                 <ul className="space-y-4">
                                     {[
-                                        { icon: MapPin, label: "Address", value: "Global Mantra Group Ltd.\nAnand, Gujarat, India" },
+                                        { icon: MapPin, label: "Address", value: "Global Mantra Group Ltd.\nAhmedabad, Gujarat, India" },
                                         { icon: Phone, label: "Phone / WhatsApp", value: "+91 91043 34361" },
                                         { icon: Mail, label: "Email", value: "work@globalmantragroupltd.com" },
                                         { icon: Globe, label: "Website", value: "www.globalmantra.in" },
