@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
@@ -9,10 +9,46 @@ import { products } from "@/app/data/rte-products";
 
 const categories = ["All", ...Array.from(new Set(products.map((p) => p.category)))];
 
+// Collect all unique image URLs to preload
+const allImageUrls: string[] = (() => {
+    const urls = new Set<string>();
+    urls.add("/images/producthero/hero-rte.png");
+    products.forEach((p) => {
+        urls.add(p.image);
+        if (p.images) p.images.forEach((img) => urls.add(img));
+    });
+    return Array.from(urls);
+})();
+
 export default function RTEProductsPage() {
     const [activeCategory, setActiveCategory] = useState("All");
     const [sortOpen, setSortOpen] = useState(false);
     const [sort, setSort] = useState("Featured");
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadProgress, setLoadProgress] = useState(0);
+
+    const preloadImages = useCallback(() => {
+        let loaded = 0;
+        const total = allImageUrls.length;
+
+        if (total === 0) { setImagesLoaded(true); return; }
+
+        allImageUrls.forEach((src) => {
+            const img = new Image();
+            const onDone = () => {
+                loaded++;
+                setLoadProgress(Math.round((loaded / total) * 100));
+                if (loaded >= total) setImagesLoaded(true);
+            };
+            img.onload = onDone;
+            img.onerror = onDone; // don't block on broken images
+            img.src = src;
+        });
+    }, []);
+
+    useEffect(() => {
+        preloadImages();
+    }, [preloadImages]);
 
     const filtered = [...products]
         .filter((p) => activeCategory === "All" || p.category === activeCategory)
@@ -23,16 +59,54 @@ export default function RTEProductsPage() {
             return 0; 
         });
 
+    /* ── Loading screen while images preload ── */
+    if (!imagesLoaded) {
+        return (
+            <PageWrapper>
+                <div className="flex flex-col items-center justify-center min-h-[80vh] bg-white gap-6">
+                    {/* Spinner */}
+                    <div className="relative w-16 h-16">
+                        <div className="absolute inset-0 rounded-full border-4 border-gray-200" />
+                        <div
+                            className="absolute inset-0 rounded-full border-4 border-transparent border-t-gray-900 animate-spin"
+                        />
+                    </div>
+
+                    {/* Progress text */}
+                    <div className="flex flex-col items-center gap-2">
+                        <p className="text-sm font-medium text-gray-700">
+                            Loading products…
+                        </p>
+
+                        {/* Progress bar */}
+                        <div className="w-48 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-gray-900 rounded-full transition-all duration-300 ease-out"
+                                style={{ width: `${loadProgress}%` }}
+                            />
+                        </div>
+                        <p className="text-xs text-gray-400">{loadProgress}%</p>
+                    </div>
+                </div>
+            </PageWrapper>
+        );
+    }
+
     return (
         <PageWrapper>
             {/* ── Hero Section ── */}
-            <div className="w-full">
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+            >
                 <img 
                     src="/images/producthero/hero-rte.png" 
                     alt="Ready to Eat Hero" 
                     className="w-full h-auto object-cover max-h-[92vh]"
                 />
-            </div>
+            </motion.div>
 
             {/* ── Top filter bar ── */}
             <div className="border-b border-gray-200 bg-white sticky top-16 lg:top-20 z-40 shadow-sm">
