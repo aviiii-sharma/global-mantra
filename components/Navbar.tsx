@@ -14,6 +14,7 @@ const navLinks = [
     label: "Products",
     href: "/products",
     children: [
+      { label: "All Products", href: "/products" },
       { label: "Agro Products", href: "/products/agro" },
       { label: "Ready-to-Eat Food", href: "/products/rte" },
       { label: "Packaging Materials", href: "/products/packaging" },
@@ -80,9 +81,10 @@ export default function Navbar() {
                     onMouseEnter={() => setActiveDropdown(link.label)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <button
+                    <Link
+                      href={link.href}
                       className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors nav-link ${
-                        pathname.startsWith(link.href)
+                        pathname.startsWith(link.href) && pathname !== '/'
                           ? "text-gold"
                           : "text-gray-300 hover:text-white"
                       }`}
@@ -93,7 +95,7 @@ export default function Navbar() {
                           activeDropdown === link.label ? "rotate-180" : ""
                         }`}
                       />
-                    </button>
+                    </Link>
                     <AnimatePresence>
                       {activeDropdown === link.label && (
                         <motion.div

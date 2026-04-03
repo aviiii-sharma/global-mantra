@@ -1,100 +1,89 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, UtensilsCrossed, Package, ArrowRight, CheckCircle2, Clock, FileText, Ship, Star, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Leaf, UtensilsCrossed, Package, ArrowRight, ChevronRight, Star } from "lucide-react";
 import PageWrapper from "@/components/PageWrapper";
+import { products as rteProducts } from "@/app/data/rte-products";
+import { products as packProducts } from "@/app/data/packaging-products";
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
 
-const categories = [
+const featuredRte = rteProducts.slice(0, 4);
+const featuredPack = packProducts.slice(0, 4);
+const featuredAgro = [
+    { name: "Turmeric", origin: "Erode, Tamil Nadu", spec: "3–5% curcumin content", slug: null, image: "https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=600&q=80" },
+    { name: "Cumin Seeds", origin: "Rajasthan / Gujarat", spec: "99% purity", slug: null, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" },
+    { name: "Basmati Rice", origin: "Punjab / Haryana", spec: "1121 Extra Long grain", slug: null, image: "https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=600&q=80" },
+    { name: "Red Lentils", origin: "Madhya Pradesh", spec: "Split & whole", slug: null, image: "https://plus.unsplash.com/premium_photo-1671379041530-05eac5f308b4?w=600&q=80" },
+];
+
+const categorySections = [
     {
-        id: "agro",
-        icon: Leaf,
-        title: "Agro Products",
-        subtitle: "Farm-to-Port Excellence",
-        tag: "APEDA Registered",
-        tagColor: "emerald",
-        description:
-            "Premium quality spices, aromatic herbs, staple grains, and protein-rich pulses sourced from certified farms across India. Cleaned, graded, and packaged according to international export standards.",
-        products: [
-            { name: "Turmeric", origin: "Erode, Tamil Nadu", spec: "3–5% curcumin content", popular: true },
-            { name: "Cumin Seeds", origin: "Rajasthan / Gujarat", spec: "99% purity, machine cleaned", popular: true },
-            { name: "Coriander", origin: "Madhya Pradesh", spec: "Eagle / Scooter grade", popular: false },
-            { name: "Basmati Rice", origin: "Punjab / Haryana", spec: "1121 Extra Long grain", popular: true },
-            { name: "Red Lentils", origin: "Madhya Pradesh", spec: "Split & whole, 99.5% purity", popular: false },
-            { name: "Chickpeas", origin: "Maharashtra / Karnataka", spec: "Kabuli & Desi varieties", popular: false },
-            { name: "Black Pepper", origin: "Kerala", spec: "500–630 g/L bulk density", popular: false },
-            { name: "Sesame Seeds", origin: "Gujarat", spec: "Natural / Hulled / Toasted", popular: false },
-        ],
-        stats: [{ label: "Countries Exported To", value: "40+" }, { label: "Certifications", value: "APEDA, FSSAI" }, { label: "Annual Volume", value: "500+ MT" }],
-        color: { from: "#064e3b", to: "#0f766e", accent: "#10b981", light: "#d1fae5", text: "#065f46" },
-        href: "/products/agro",
+        id: "packaging",
+        title: "Packaging Materials",
+        subtitle: "Industrial-Grade Export Packaging",
+        desc: "Durable export-grade packaging materials engineered for heavy loads, moisture protection, and long-haul international shipping. Custom printing, sizing, and lamination available.",
+        icon: Package,
+        href: "/products/packaging",
+        theme: {
+            bg: "bg-blue-50/20",
+            iconBg: "bg-blue-100",
+            iconText: "text-blue-600",
+            button: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/20"
+            
+        },
+        products: featuredPack.map(p => ({
+            name: p.name,
+            desc: p.shortSpec,
+            image: p.image,
+            href: `/products/packaging/${p.slug}`
+        }))
     },
     {
         id: "rte",
-        icon: UtensilsCrossed,
         title: "Ready-to-Eat Food",
         subtitle: "Authentic Indian Cuisine, Globally Shelf-Stable",
-        tag: "HACCP Certified",
-        tagColor: "blue",
-        description:
-            "Shelf-stable ready-to-eat Indian meals and processed foods designed for international retail and institutional supply. Products follow FSSAI and HACCP standards with 12–24 month shelf life.",
-        products: [
-            { name: "Dal Makhani", origin: "North Indian Recipe", spec: "Retort pouch / 300g", popular: true },
-            { name: "Biryani Kits", origin: "Hyderabadi / Lucknowi", spec: "Complete spice + rice kits", popular: true },
-            { name: "Curry Pastes", origin: "Pan-India Varieties", spec: "Butter Chicken, Vindaloo, Korma", popular: false },
-            { name: "Papad", origin: "Rajasthan", spec: "Urad / Moong / Masala variants", popular: false },
-            { name: "Pickles", origin: "Andhra / North Indian", spec: "Mango, Lime, Mixed — 200g/500g", popular: true },
-            { name: "Indian Snacks", origin: "Pan-India", spec: "Namkeen, Mathri, Chakli", popular: false },
-            { name: "Ghee", origin: "Rajasthan", spec: "A2 / Regular, 500ml–15kg", popular: false },
-            { name: "Masala Blends", origin: "Proprietary Blends", spec: "Garam Masala, Chaat, Sambar", popular: false },
-        ],
-        stats: [{ label: "Shelf Life", value: "12–24 mo" }, { label: "Standards", value: "FSSAI, HACCP" }, { label: "Pack Sizes", value: "Retail & Bulk" }],
-        color: { from: "#1e3a5f", to: "#0e7490", accent: "#0ea5e9", light: "#e0f2fe", text: "#0c4a6e" },
+        desc: "Shelf-stable ready-to-eat Indian meals and processed foods designed for international retail and institutional supply. Products follow FSSAI and HACCP standards with 12–24 month shelf life.",
+        icon: UtensilsCrossed,
         href: "/products/rte",
+        theme: {
+            bg: "bg-amber-50/20",
+            iconBg: "bg-amber-100",
+            iconText: "text-amber-600",
+            button: "bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-600/20"
+        },
+        products: featuredRte.map(p => ({
+            name: p.name,
+            desc: p.subtitle,
+            image: p.image,
+            href: `/products/rte/${p.slug}`
+        }))
     },
+
     {
-        id: "packaging",
-        icon: Package,
-        title: "Packaging Materials",
-        subtitle: "Industrial-Grade Export Packaging",
-        tag: "BIS Certified",
-        tagColor: "amber",
-        description:
-            "Durable export-grade packaging materials engineered for heavy loads, moisture protection, and long-haul international shipping. Custom printing, sizing, and lamination available.",
-        products: [
-            { name: "PP Woven Sacks", origin: "Gujarat Manufacturing", spec: "25–100 kg capacity", popular: true },
-            { name: "HDPE Bags", origin: "Pan-India", spec: "Food-grade & industrial grades", popular: false },
-            { name: "Laminated Pouches", origin: "Gujarat / Maharashtra", spec: "BOPP / PET / Foil laminates", popular: true },
-            { name: "Kraft Paper Bags", origin: "South India", spec: "3-ply, moisture resistant", popular: false },
-            { name: "Jute Bags", origin: "West Bengal", spec: "Custom weave, eco-certified", popular: false },
-            { name: "FIBC / Jumbo Bags", origin: "Pan-India", spec: "500–2000 kg SWL rated", popular: true },
-            { name: "Vacuum Pouches", origin: "Gujarat", spec: "PA/PE, food safe", popular: false },
-            { name: "Corrugated Boxes", origin: "Pan-India", spec: "3–7 ply, custom print", popular: false },
-        ],
-        stats: [{ label: "MOQ", value: "500 pcs" }, { label: "Certifications", value: "BIS, ISO 9001" }, { label: "Lead Time", value: "7–14 days" }],
-        color: { from: "#78350f", to: "#d97706", accent: "#f59e0b", light: "#fef3c7", text: "#78350f" },
-        href: "/products/packaging",
-    },
+        id: "agro",
+        title: "Agro Products",
+        subtitle: "Farm-to-Port Excellence",
+        desc: "Premium quality spices, aromatic herbs, staple grains, and protein-rich pulses sourced from certified farms across India. Cleaned, graded, and packaged according to international export standards.",
+        icon: Leaf,
+        href: "/products/agro",
+        theme: {
+            bg: "bg-emerald-50/20",
+            iconBg: "bg-emerald-100",
+            iconText: "text-emerald-600",
+            button: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20"
+        },
+        products: featuredAgro.map(p => ({
+            name: p.name,
+            desc: p.spec,
+            image: p.image,
+            href: p.slug ? `/products/agro/${p.slug}` : "/products/agro"
+        }))
+    }
 ];
-
-const shippingInfo = [
-    { icon: Ship, label: "Shipping Terms", value: "FOB / CIF / CFR / EXW" },
-    { icon: FileText, label: "Documentation", value: "COO, Phyto, Bill of Lading, COA" },
-    { icon: Clock, label: "Lead Time", value: "10–21 business days" },
-    { icon: CheckCircle2, label: "Quality Checks", value: "Pre-shipment inspection included" },
-];
-
-/* ─── Component ─────────────────────────────────────────────────────────── */
 
 export default function ProductsPage() {
-    const [activeTab, setActiveTab] = useState(0);
-    const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
-
-    const cat = categories[activeTab];
-
     return (
         <PageWrapper>
             {/* ── Hero ────────────────────────────────────────────────────── */}
@@ -124,9 +113,9 @@ export default function ProductsPage() {
                         {/* Stats bar */}
                         <div className="inline-grid grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
                             {[
+                                { n: "3", label: "Core Segments" },
                                 { n: "40+", label: "Countries" },
-                                { n: "500+", label: "MT Monthly" },
-                                { n: "12+", label: "Years Export" },
+                                { n: "50+", label: "Export Ready Products" },
                             ].map((s) => (
                                 <div key={s.label} className="bg-white/5 backdrop-blur px-4 sm:px-8 py-4">
                                     <div className="text-2xl font-black text-white">{s.n}</div>
@@ -138,186 +127,73 @@ export default function ProductsPage() {
                 </div>
             </section>
 
-            {/* ── Product Explorer ────────────────────────────────────────── */}
-            <section className="bg-gray-light min-h-screen">
-                {/* Tab bar */}
-                <div className="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
-                    <div className="container-custom">
-                        <div className="flex gap-0 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
-                            {categories.map((c, i) => {
-                                const Icon = c.icon;
-                                const active = activeTab === i;
-                                return (
-                                    <button
-                                        key={c.id}
-                                        onClick={() => setActiveTab(i)}
-                                        className="relative flex items-center gap-2.5 px-6 py-5 text-sm font-semibold whitespace-nowrap transition-colors"
-                                        style={{ color: active ? c.color.accent : "#6b7280" }}
-                                    >
-                                        <Icon className="w-4 h-4" />
-                                        {c.title}
-                                        {active && (
-                                            <motion.div
-                                                layoutId="tab-indicator"
-                                                className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-full"
-                                                style={{ background: c.color.accent }}
-                                            />
-                                        )}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="container-custom py-12">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={cat.id}
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.35 }}
-                        >
-                            {/* Category header */}
-                            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
-                                <div>
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <span
-                                            className="text-xs font-bold px-3 py-1 rounded-full"
-                                            style={{ background: cat.color.light, color: cat.color.text }}
-                                        >
-                                            ✓ {cat.tag}
-                                        </span>
+            {/* ── Block By Block Layout ──────────────────────────────────── */}
+            <div className="bg-white">
+                {categorySections.map((cat, index) => (
+                    <section key={cat.id} className={`py-16 sm:py-24 border-b border-gray-100 last:border-0 ${cat.theme.bg}`}>
+                        <div className="container-custom">
+                            <div className="flex flex-col xl:flex-row gap-12 xl:gap-20 items-center">
+                                {/* Left side text */}
+                                <motion.div 
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}
+                                    className="xl:w-1/3 flex flex-col items-start text-left w-full"
+                                >
+                                    <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-sm ${cat.theme.iconBg}`}>
+                                        <cat.icon className={`w-7 h-7 ${cat.theme.iconText}`} />
                                     </div>
-                                    <h2 className="font-poppins text-3xl font-black text-navy">{cat.title}</h2>
-                                    <p className="text-gray-500 mt-1 text-sm">{cat.subtitle}</p>
-                                </div>
-
-                                {/* Stat chips */}
-                                <div className="flex flex-wrap gap-3">
-                                    {cat.stats.map((s) => (
-                                        <div key={s.label} className="bg-white rounded-xl px-4 py-2.5 shadow-sm border border-gray-100">
-                                            <div className="text-xs text-gray-400">{s.label}</div>
-                                            <div className="text-sm font-bold text-navy">{s.value}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Two-column layout: product grid + sidebar */}
-                            <div className="grid lg:grid-cols-3 gap-6">
-
-                                {/* Product grid — takes 2 cols */}
-                                <div className="lg:col-span-2">
-                                    <div className="grid sm:grid-cols-2 gap-3">
-                                        {cat.products.map((p, j) => (
+                                    <h2 className="font-poppins text-3xl sm:text-4xl font-black text-navy mb-3">{cat.title}</h2>
+                                    <p className="text-gray-900 font-semibold mb-4 text-sm uppercase tracking-wide">{cat.subtitle}</p>
+                                    <p className="text-gray-600 text-sm leading-relaxed mb-8">{cat.desc}</p>
+                                    
+                                    <Link href={cat.href} className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all hover:-translate-y-0.5 ${cat.theme.button}`}>
+                                        Explore {cat.title} <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                </motion.div>
+                                
+                                {/* Right side products grid */}
+                                <div className="xl:w-2/3 w-full">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                        {cat.products.map((prod, i) => (
                                             <motion.div
-                                                key={p.name}
-                                                initial={{ opacity: 0, scale: 0.96 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: j * 0.04 }}
-                                                onMouseEnter={() => setHoveredProduct(j)}
-                                                onMouseLeave={() => setHoveredProduct(null)}
-                                                className="group bg-white rounded-xl p-4 border border-gray-100 cursor-default transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-                                                style={hoveredProduct === j ? { borderColor: cat.color.accent } : {}}
+                                                key={i}
+                                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: i * 0.1 }}
                                             >
-                                                <div className="flex items-start justify-between mb-2">
-                                                    <div
-                                                        className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black transition-colors"
-                                                        style={{
-                                                            background: hoveredProduct === j ? cat.color.accent : cat.color.light,
-                                                            color: hoveredProduct === j ? "white" : cat.color.text,
-                                                        }}
-                                                    >
-                                                        {p.name[0]}
-                                                    </div>
-                                                    {p.popular && (
-                                                        <span className="flex items-center gap-1 text-amber-600 text-[10px] font-bold bg-amber-50 px-2 py-0.5 rounded-full">
-                                                            <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" /> Popular
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <h3 className="font-semibold text-navy text-sm">{p.name}</h3>
-                                                <p className="text-gray-400 text-xs mt-0.5">{p.origin}</p>
-                                                <div
-                                                    className="mt-2 text-xs font-medium px-2 py-1 rounded-md w-fit transition-colors"
-                                                    style={{ background: cat.color.light, color: cat.color.text }}
+                                                <Link 
+                                                    href={prod.href} 
+                                                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-300 hover:shadow-xl transition-all h-full"
                                                 >
-                                                    {p.spec}
-                                                </div>
+                                                    <div className="relative h-48 sm:h-56 overflow-hidden bg-white">
+                                                        <img 
+                                                            src={prod.image} 
+                                                            alt={prod.name} 
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                                            onError={(e) => {
+                                                                const el = e.target as HTMLImageElement;
+                                                                el.style.display = "none";
+                                                                (el.parentElement as HTMLElement).innerHTML += `<div class="w-full h-full flex items-center justify-center text-5xl absolute inset-0 bg-gray-50"></div>`;
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className="p-5 flex-1 flex flex-col pt-4">
+                                                        <h3 className="font-semibold text-navy text-base mb-1 group-hover:text-teal transition-colors font-poppins">{prod.name}</h3>
+                                                        <p className="text-sm text-gray-500 line-clamp-2 mt-auto">{prod.desc}</p>
+                                                    </div>
+                                                </Link>
                                             </motion.div>
                                         ))}
                                     </div>
-
-                                    <div className="mt-4 flex gap-3">
-                                        <Link
-                                            href={cat.href}
-                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                                            style={{ background: `linear-gradient(135deg, ${cat.color.from}, ${cat.color.to})` }}
-                                        >
-                                            Full Specifications & MOQ <ArrowRight className="w-4 h-4" />
-                                        </Link>
-                                        <Link
-                                            href="/contact"
-                                            className="btn-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold"
-                                        >
-                                            Request Quote <ChevronRight className="w-4 h-4" />
-                                        </Link>
-                                    </div>
-                                </div>
-
-                                {/* Sidebar */}
-                                <div className="flex flex-col gap-4">
-                                    {/* Description card */}
-                                    <div
-                                        className="rounded-2xl p-6 text-white"
-                                        style={{ background: `linear-gradient(135deg, ${cat.color.from}, ${cat.color.to})` }}
-                                    >
-                                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4">
-                                            <cat.icon className="w-5 h-5 text-white" />
-                                        </div>
-                                        <p className="text-white/90 text-sm leading-relaxed">{cat.description}</p>
-                                    </div>
-
-                                    {/* Shipping info */}
-                                    <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                                        <h4 className="text-navy font-semibold text-xs uppercase tracking-wider mb-4">Trade Details</h4>
-                                        <div className="flex flex-col gap-3">
-                                            {shippingInfo.map((info) => (
-                                                <div key={info.label} className="flex items-start gap-3">
-                                                    <div
-                                                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                                                        style={{ background: cat.color.light }}
-                                                    >
-                                                        <info.icon className="w-3.5 h-3.5" style={{ color: cat.color.text }} />
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-gray-400 text-[11px]">{info.label}</div>
-                                                        <div className="text-navy font-semibold text-xs">{info.value}</div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Quick quote nudge */}
-                                    <div className="bg-navy rounded-2xl p-5 text-center">
-                                        <p className="text-white font-semibold text-sm mb-1">Need a Custom Quote?</p>
-                                        <p className="text-gray-400 text-xs mb-4">MOQ, custom labeling, and private label available</p>
-                                        <Link
-                                            href="/contact"
-                                            className="block text-center btn-gold py-2.5 rounded-xl text-xs font-bold"
-                                        >
-                                            Talk to Export Team →
-                                        </Link>
-                                    </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-            </section>
+                        </div>
+                    </section>
+                ))}
+            </div>
 
             {/* ── Why Us trust strip ───────────────────────────────────────── */}
             <section className="bg-white py-14 border-t border-gray-100">
@@ -330,7 +206,7 @@ export default function ProductsPage() {
                             { icon: "🌐", title: "Destination Compliance", desc: "Products prepared per EU, US, GCC, and ASEAN import regulations." },
                             { icon: "🤝", title: "Dedicated Account Manager", desc: "Single point of contact from quote to delivery and after-sales." },
                         ].map((item) => (
-                            <div key={item.title} className="rounded-2xl bg-gray-light p-5 hover:bg-teal/5 transition-colors">
+                            <div key={item.title} className="rounded-2xl bg-gray-50 border border-gray-100 p-5 hover:bg-teal/5 transition-colors">
                                 <div className="text-2xl mb-3">{item.icon}</div>
                                 <h3 className="font-semibold text-navy text-sm mb-1">{item.title}</h3>
                                 <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>

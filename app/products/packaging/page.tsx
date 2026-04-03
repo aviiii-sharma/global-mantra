@@ -11,6 +11,8 @@ import {
     Tag,
     X,
     ChevronRight,
+    ChevronDown,
+    SlidersHorizontal,
     Layers,
     Grid3X3,
     Palette,
@@ -30,6 +32,7 @@ const shippingTerms = ["FOB Mundra / JNPT", "CIF Major Ports Worldwide", "EXW Fa
 
 export default function PackagingProductsPage() {
     const [activeCategory, setActiveCategory] = useState("All");
+    const [filterOpen, setFilterOpen] = useState(false);
     const [search, setSearch] = useState("");
     const [selectedCert, setSelectedCert] = useState<{ file: string; label: string } | null>(null);
 
@@ -91,22 +94,64 @@ export default function PackagingProductsPage() {
             </section>
 
             {/* ── Filter Bar ── */}
-            <div className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm py-3">
+            <div className="sticky top-16 lg:top-20 z-30 bg-white border-b border-gray-200 shadow-sm py-3">
                 <div className="container-custom flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                    {/* Category pills */}
-                    <div className="flex items-center gap-2 flex-wrap flex-1">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${activeCategory === cat
+                    {/* Filter (Mobile) & Category pills (Desktop) */}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 flex-1 w-full sm:w-auto">
+                        <div className="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-700 flex-shrink-0">
+                            <SlidersHorizontal className="w-4 h-4" />
+                            Filter:
+                        </div>
+                        
+                        {/* Desktop Category Pills */}
+                        <div className="hidden md:flex items-center gap-2 flex-wrap flex-1">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${activeCategory === cat
                                         ? "bg-navy text-white border-navy"
                                         : "bg-white text-navy border-gray-200 hover:border-teal hover:text-teal"
-                                    }`}
+                                        }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Mobile Category Dropdown */}
+                        <div className="relative md:hidden w-full sm:w-auto">
+                            <button
+                                onClick={() => setFilterOpen(!filterOpen)}
+                                className="w-full sm:w-48 flex justify-between items-center gap-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg px-3 py-2 hover:border-gray-500 transition-colors"
                             >
-                                {cat}
+                                <div className="flex items-center gap-2">
+                                    <SlidersHorizontal className="w-4 h-4" />
+                                    {activeCategory}
+                                </div>
+                                <ChevronDown className={`w-4 h-4 transition-transform ${filterOpen ? "rotate-180" : ""}`} />
                             </button>
-                        ))}
+                            <AnimatePresence>
+                                {filterOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 4 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 4 }}
+                                        className="absolute left-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 w-full sm:w-48 z-50"
+                                    >
+                                        {categories.map((cat) => (
+                                            <button
+                                                key={cat}
+                                                onClick={() => { setActiveCategory(cat); setFilterOpen(false); }}
+                                                className={`w-full text-left px-4 py-2 text-sm transition-colors hover:bg-gray-50 ${activeCategory === cat ? "font-semibold text-navy" : "text-gray-600"}`}
+                                            >
+                                                {cat}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </div>
 
                     {/* Search */}
@@ -123,8 +168,8 @@ export default function PackagingProductsPage() {
             </div>
 
             {/* ── Product Grid ── */}
-            <section className="section-padding bg-gray-50">
-                <div className="container-custom">
+            <div className="bg-gray-50 min-h-screen">
+                <div className="container-custom py-6 sm:py-8 lg:py-10">
                     {/* Results count */}
                     <p className="text-sm text-gray-500 mb-6">
                         Showing <span className="font-semibold text-navy">{filtered.length}</span> of{" "}
@@ -212,7 +257,7 @@ export default function PackagingProductsPage() {
                         </div>
                     )}
                 </div>
-            </section>
+            </div>
 
 
 

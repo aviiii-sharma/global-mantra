@@ -207,7 +207,7 @@ const featuredProducts = [
     spec: "18-month shelf life | HACCP certified | 450g–1kg",
     tag: "HACCP",
     tagColor: "bg-teal",
-    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=70",
+    image: "/images/rte/dalmakhni.png",
     href: "/products/rte",
   },
   {
