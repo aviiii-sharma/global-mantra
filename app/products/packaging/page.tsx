@@ -274,11 +274,11 @@ export default function PackagingProductsPage() {
                             </h2>
                             <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
                                 {[
-                                    { file: "gst.png", label: "GST Certified" },
-                                    { file: "iso9001.png", label: "ISO 9001:2015" },
-                                    { file: "msme.png", label: "MSME (Udyam)" },
-                                    { file: "iec.png", label: "Import Export Code (IEC)" },
-                                    { file: "pwm.png", label: "Plastic Waste Management (EPR)" },
+                                    { file: "GST.png", label: "GST Certified" },
+                                    { file: "ISO9001.png", label: "ISO 9001:2015" },
+                                    { file: "MSME.png", label: "MSME (Udyam)" },
+                                    { file: "IEC.png", label: "Import Export Code (IEC)" },
+                                    { file: "PWM.png", label: "Plastic Waste Management (EPR)" },
                                 ].map(({ file, label }) => (
                                     <div
                                         key={file}

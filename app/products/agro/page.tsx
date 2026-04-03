@@ -531,10 +531,10 @@ export default function AgroProductsPage() {
                             </h2>
                             <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
                                 {[
-                                    { file: "gst.png",     label: "GST Certified"              },
+                                    { file: "GST.png",     label: "GST Certified"              },
                                     { file: "apeda.png",   label: "APEDA Registered"            },
                                     { file: "agmark.png",  label: "AGMARK Certified"            },
-                                    { file: "iec.png",     label: "Import Export Code (IEC)"    },
+                                    { file: "IEC.png",     label: "Import Export Code (IEC)"    },
                                     { file: "fssai.png",   label: "FSSAI Licensed"              },
                                 ].map(({ file, label }) => (
                                     <div
