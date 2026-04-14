@@ -26,8 +26,6 @@ import { products } from "@/app/data/packaging-products";
 
 const categories = ["All", "PP Woven", "HDPE / LDPE", "FIBC / Jumbo", "Specialty"];
 
-const shippingTerms = ["FOB Mundra / JNPT", "CIF Major Ports Worldwide", "EXW Factory as negotiated"];
-
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function PackagingProductsPage() {
@@ -232,13 +230,7 @@ export default function PackagingProductsPage() {
                                             </div>
 
                                             {/* Footer row */}
-                                            <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                                                <div>
-                                                    <div className="text-[10px] text-gray-400 uppercase tracking-wider">
-                                                        MOQ
-                                                    </div>
-                                                    <div className="text-xs font-semibold text-navy">{item.moq}</div>
-                                                </div>
+                                            <div className="flex items-center justify-end pt-3 border-t border-gray-100">
                                                 <span className="text-teal text-xs font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                                                     Details <ChevronRight className="w-3.5 h-3.5" />
                                                 </span>
@@ -309,20 +301,9 @@ export default function PackagingProductsPage() {
                         {/* Divider */}
                         <div className="hidden lg:block w-px bg-white/10 self-stretch" />
 
-                        {/* Right: shipping + CTA */}
-                        <div className="lg:w-64 flex flex-col gap-6">
+                        {/* Right: CTA */}
+                        <div className="lg:w-64 flex flex-col gap-4">
                             <div>
-                                <div className="text-gray-400 text-xs uppercase tracking-widest mb-3">Shipping Terms</div>
-                                <ul className="space-y-2">
-                                    {shippingTerms.map((t) => (
-                                        <li key={t} className="text-sm text-gray-300 flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
-                                            {t}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="pt-2 border-t border-white/10">
                                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                                     Need a custom spec or bulk pricing?
                                 </p>

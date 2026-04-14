@@ -118,7 +118,7 @@ export default function Footer() {
                             <li className="flex gap-3">
                                 <MapPin className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
                                 <span className="text-sm leading-relaxed">
-                                    Global Mantra Group Ltd.<br />
+                                    Global Mantra<br />
                                     Ahmedabad, Gujarat, India
                                 </span>
                             </li>
@@ -142,9 +142,9 @@ export default function Footer() {
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 mt-2 sm:mt-5">
                 <div className="container-custom py-1 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-                    <span>© {new Date().getFullYear()} Global Mantra Group Ltd. All rights reserved.</span>
+                    <span>© {new Date().getFullYear()} Global Mantra All rights reserved.</span>
                     <span>
-                        FOB | CIF | CFR Export Terms &nbsp;·&nbsp; APEDA Registered &nbsp;·&nbsp; IEC Code: AAACG1234Z
+                        PLEXCONCI | FOB | CIF | CFR Export Terms &nbsp;·&nbsp; APEDA Registered &nbsp;·&nbsp; IEC
                     </span>
                 </div>
             </div>

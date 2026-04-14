@@ -64,13 +64,17 @@ export default function AboutPage() {
                                 A Modern Export Company from India
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                Established in 2026, Global Mantra was created to simplify international sourcing by
-                                connecting global buyers with reliable producers across India’s agricultural and
-                                manufacturing sectors.
+                                Global Mantra IS a manutactunng-dnven export partner built on lowterm strategic alliances wth some of India's most reliable and certified production
+units. Our network spans across spices, herbs. ready-to-eat foods, and industrial packaging. where each manufacturing unit brings over 23+ years of
+industry expenence and operates under strict quality systems and international compliance standards_ Instead of fragmented sourcing, we work
+rough a structured and Integrated manutactunng base where every product category is managed by specialized producers.
                             </p>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                We work with carefully selected farms, food processors, and packaging manufacturers
-                                to deliver products that meet international quality, safety, and packaging standards.
+                                This approach allows us
+o maintain consistent quality. ensure scalable bulk production, and offer cornpetitive export pricing without compromising reliability By aligning closely
+manufacturing operations, we maintain control over production, quality checks, and delivery timelines, ensuring that every shipment meets global
+tions. Our strength lies in combining manufacturing expertise with export execution. enabling us to deliver dependable and consistent supply
+utions to intematlonal buyers
                             </p>
                             <p className="text-gray-600 leading-relaxed">
                                 Our focus is straightforward: consistent sourcing, transparent communication,

@@ -120,12 +120,6 @@ export default function PackagingProductDetailPage({ params }: { params: Promise
                                 ))}
                             </div>
 
-                            {/* MOQ Summary */}
-                            <div className="bg-gray-50 rounded-xl p-4 flex items-center justify-between border border-gray-100">
-                                <span className="text-xs text-gray-500 uppercase font-semibold">Min. Order Qty</span>
-                                <span className="text-base font-bold text-gray-900">{product.moq}</span>
-                            </div>
-
                             {/* Details 6 items */}
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                 {([

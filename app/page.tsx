@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import createGlobe from "cobe";
-import { ArrowRight, Anchor, Award, Globe, ShieldCheck, Truck, Package, Leaf, UtensilsCrossed, CheckCircle2, ChevronRight, Star, BookOpen, FlaskConical, SlidersHorizontal, BadgeCheck, Quote } from "lucide-react";
+import { ArrowRight, Anchor, Award, Globe, ShieldCheck, Truck, Package, Leaf, UtensilsCrossed, CheckCircle2, ChevronRight, Star, BookOpen, FlaskConical, SlidersHorizontal, BadgeCheck, Quote, FileText, Files, Gift, CreditCard, Factory, ClipboardCheck, Box, PackageCheck } from "lucide-react";
 import PageWrapper from "@/components/PageWrapper";
 
 // Mumbai as origin, key export destinations
@@ -165,11 +165,14 @@ const markets = [
 ];
 
 const processSteps = [
-  { step: 1, icon: Leaf, title: "Sourcing", desc: "Farm-to-warehouse sourcing from certified agricultural belts across India." },
-  { step: 2, icon: ShieldCheck, title: "Quality Inspection", desc: "Multi-stage QC: grading, moisture testing, lab analysis, and third-party verification." },
-  { step: 3, icon: Package, title: "Packaging", desc: "Export-compliant packaging with proper labeling for each destination market." },
-  { step: 4, icon: Anchor, title: "Freight & Customs", desc: "Complete documentation, customs clearance, and freight forwarding handled in-house." },
-  { step: 5, icon: Truck, title: "Last-Mile Delivery", desc: "On-time delivery to destination ports with real-time shipment tracking." },
+  { step: 1, icon: FileText, title: "Quotation Issued", desc: "You request a quote, and we send a customized quotation based on your product needs." },
+  { step: 2, icon: Files, title: "Official Documents Shared", desc: "You receive our Proforma Invoice and Full Corporate Offer (FCO)." },
+  { step: 3, icon: Gift, title: "Free Sample Sent", desc: "After documentation, we ship a free sample (courier cost covered by buyer)." },
+  { step: 4, icon: CreditCard, title: "Buyer Confirms & Pays Advance", desc: "You sign the FCO, place an order, and pay the advance to kick off production." },
+  { step: 5, icon: Factory, title: "Production & Branding", desc: "We begin packaging and labeling, with your company branding if needed." },
+  { step: 6, icon: ClipboardCheck, title: "Final Approval & Payment", desc: "You review photos/videos of the final goods and complete payment." },
+  { step: 7, icon: Anchor, title: "Shipping Arranged", desc: "We load the goods and ship them. You receive all required documents." },
+  { step: 8, icon: PackageCheck, title: "Delivery & Quality Check", desc: "You receive and inspect the goods. If anything's off, we fix it fast." },
 ];
 
 const features = [
@@ -223,17 +226,17 @@ const featuredProducts = [
 ];
 
 const qaSteps = [
-  { icon: FlaskConical, title: "Lab Testing", desc: "Moisture, purity, aflatoxin, and heavy-metal analysis by accredited third-party labs." },
-  { icon: BadgeCheck,   title: "Batch Certification", desc: "Certificate of Analysis (COA) and phytosanitary certificates for every shipment." },
-  { icon: ShieldCheck,  title: "Pre-Shipment Inspection", desc: "SGS / Bureau Veritas inspection facilitated on request before loading." },
-  { icon: Award,        title: "Compliance Docs", desc: "Full export documentation — BL, COO, health cert, fumigation cert — prepared in-house." },
+  { icon: FlaskConical, title: "Lab Testing / Quality Testing" },
+  { icon: BadgeCheck,   title: "Batch Certification" },
+  { icon: ShieldCheck,  title: "Pre-Shipment Inspection" },
+  { icon: Award,        title: "Compliance Docs" },
 ];
 
 const exportGrades = [
-  { label: "FAQ Grade",      desc: "Fair Average Quality — standard export specification" },
-  { label: "Premium Grade",  desc: "Machine-cleaned, sortex-processed, retail-ready" },
-  { label: "Organic",        desc: "Third-party organic certified on select SKUs" },
-  { label: "Custom Spec",    desc: "Moisture, size, and purity tailored to buyer requirements" },
+  { label: "Agri and Spices",      desc: "Standard FAQ, premium, and organic grades" },
+  { label: "Ready-to-Eat Foods",   desc: "Shelf-stable, export-ready products manufactured under certified food facilities." },
+  { label: "Packaging Materials",  desc: "Customized bag types, sizes, and specifications" },
+  { label: "Custom Specification", desc: "Specifications precisely tuned to your order" },
 ];
 
 const testimonials = [
@@ -356,8 +359,8 @@ export default function HomePage() {
               transition={{ duration: 0.48, delay: 0.17 }}
               className="text-gray-500 text-[0.95rem] leading-relaxed mb-8 max-w-[420px]"
             >
-              Global Mantra connects international buyers with trusted suppliers across India.
-              We source agro products, ready-to-make foods, and packaging materials with quality and export compliance.
+              We are not traditional traders.
+              Our brand is built through strategic partnerships with some of India’s most reliable and certified manufacturers across spices, herbs, ready-to-eat foods, and packaging.
             </motion.p>
 
             {/* Product category pills — teal for all, no colour mixing */}
@@ -406,26 +409,15 @@ export default function HomePage() {
               </Link>
             </motion.div>
 
-            {/* Trust bar — navy numbers, gray labels, cert badges */}
+            {/* Trust bar — cert badges */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.45, delay: 0.42 }}
               className="flex items-center gap-6 pt-6 border-t border-gray-100"
             >
-              {[
-                { value: "50+",  label: "Products"         },
-                { value: "20+",  label: "Suppliers"        },
-                { value: "100%", label: "Pre-Shipment QC"  },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="font-poppins font-bold text-navy text-xl leading-none">{s.value}</div>
-                  <div className="text-gray-400 text-[10px] mt-0.5 font-medium">{s.label}</div>
-                </div>
-              ))}
-              <div className="w-px h-8 bg-gray-200" />
               <div className="flex gap-1.5 flex-wrap">
-                {["APEDA", "FSSAI", "HACCP"].map((c) => (
+                {["GST", "IEC", "ISO9001", "MSME", "PWM"].map((c) => (
                   <span
                     key={c}
                     className="text-[9px] font-bold text-gray-500 bg-gray-100 rounded px-1.5 py-0.5 tracking-wide uppercase"
@@ -526,18 +518,21 @@ export default function HomePage() {
                 <div className="w-8 h-0.5 bg-teal" /> Who We Are
               </div>
               <h2 className="font-poppins text-3xl lg:text-4xl font-bold text-navy mb-6 leading-tight">
-                Global Export Partner from India
+                Your Global Partner from India
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Global Mantra is a modern export company based in India, focused on connecting global buyers with
-                reliable suppliers across the country’s agricultural and manufacturing ecosystems. Established in 2026, we
-                specialize in sourcing high-quality agro products, ready-to-make foods, and industrial packaging materials
-                for international markets.
+                Global Mantra is a manufacturing-driven export partner built on strong alliances with some of India’s 
+                most reliable and certified production units. Our network spans spices, herbs, readyto-eat foods, and 
+                industrial packaging, with each unit bringing over 23+ years of experience and operating under strict 
+                quality and international compliance standards. We work through
+                an integrated manufacturing base where every product category is handled by specialized producers. 
               </p>
               <p className="text-gray-600 leading-relaxed mb-8">
-                Our sourcing network spans India's key agricultural regions and production clusters, allowing us to deliver
-                products that meet international quality and packaging standards. We work closely with farmers, processors,
-                and manufacturers to ensure consistent supply and dependable export logistics.
+                This structured approach ensures consistent quality, scalable production, and
+                competitive export pricing. By staying closely aligned with manufacturing operations, we maintain control 
+                over quality, timelines, and delivery. Our strength lies in combining production
+                expertise with efficient export execution, enabling us to deliver reliable and consistent supply solutions
+                to global buyers.
               </p>
               <Link href="/about" className="btn-teal px-6 py-3 rounded-lg inline-flex items-center gap-2 text-sm font-semibold">
                 Learn About Us <ArrowRight className="w-4 h-4" />
@@ -715,10 +710,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative">
-            {/* Connector line */}
-            <div className="hidden lg:block absolute top-6 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-gold via-teal to-gold" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-y-12">
               {processSteps.map((step, i) => (
                 <div
                   key={i}
@@ -726,8 +718,12 @@ export default function HomePage() {
                   data-aos="fade-up"
                   data-aos-delay={i * 100}
                 >
-                  <div className="step-number mb-4">{step.step}</div>
-                  <div className="w-12 h-12 rounded-xl bg-navy flex items-center justify-center mb-4">
+                  {/* Connector line for each row */}
+                  {(i === 0 || i === 4) && (
+                    <div className="hidden lg:block absolute top-6 left-[50%] w-[calc(300%+6rem)] h-0.5 bg-gradient-to-r from-gold via-teal to-gold z-0" />
+                  )}
+                  <div className="step-number mb-4 relative z-10 bg-white sm:bg-transparent">{step.step}</div>
+                  <div className="w-12 h-12 rounded-xl bg-navy flex items-center justify-center mb-4 relative z-10">
                     <step.icon className="w-6 h-6 text-teal" />
                   </div>
                   <h4 className="font-poppins font-bold text-navy mb-2 text-sm">{step.title}</h4>
@@ -783,15 +779,26 @@ export default function HomePage() {
                 }}
               />
               <div className="absolute inset-0 bg-navy/40" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-navy/80 backdrop-blur-sm border border-teal/30 rounded-xl p-4">
+              <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row gap-4">
+                <div className="bg-navy/80 backdrop-blur-sm border border-teal/30 rounded-xl p-4 flex-1">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-gold flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-gold flex items-center justify-center shrink-0">
                       <Award className="w-5 h-5 text-navy" />
                     </div>
                     <div>
                       <div className="text-white font-semibold text-sm">APEDA Certified Exporter</div>
                       <div className="text-gray-400 text-xs">Agricultural & Processed Food Products Export Development Authority</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-navy/80 backdrop-blur-sm border border-teal/30 rounded-xl p-4 flex-1">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-gold flex items-center justify-center shrink-0">
+                      <Award className="w-5 h-5 text-navy" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-sm">PLEXCONCI Certified Exporter</div>
+                      <div className="text-gray-400 text-xs">The Plastics Export Promotion Council</div>
                     </div>
                   </div>
                 </div>
@@ -812,7 +819,7 @@ export default function HomePage() {
               Quality Assurance &amp; Batch Certification
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-              Every shipment goes through a documented quality chain — from farm intake to port loading — so buyers receive exactly what they ordered.
+              Every shipment goes through a documented quality chain so buyers receive exactly what they ordered.
             </p>
           </div>
 
@@ -828,7 +835,6 @@ export default function HomePage() {
                   <q.icon className="w-5 h-5 text-teal" />
                 </div>
                 <h4 className="font-poppins font-bold text-navy text-sm mb-2">{q.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{q.desc}</p>
               </div>
             ))}
           </div>
@@ -853,10 +859,11 @@ export default function HomePage() {
                 <div className="w-8 h-0.5 bg-teal" /> Flexible Specifications
               </div>
               <h2 className="font-poppins text-3xl font-bold text-white mb-4">
-                We Match Your<br />Export Grade Requirements
+                Tailored Export Solutions<br />Across Agri, Food, and <br />Packaging
               </h2>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Whether you need standard FAQ-grade commodity or a tightly-spec'd retail-ready product, our sourcing team can match your exact moisture, purity, size, and packaging requirements.
+                We support global buyers across agri products, spices, herbs, ready-to-eat foods, and industrial packaging materials. Our manufacturing network allows us to match precise export specifications including quality
+                grade, processing standards, packaging formats, and compliance requirements based on market needs;
               </p>
               <Link href="/contact" className="btn-gold inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm">
                 Discuss Your Specification <ArrowRight className="w-4 h-4" />
